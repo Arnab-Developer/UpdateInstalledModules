@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:    
-    name: "Publish to gallery"
+    name: Build
     runs-on: ubuntu-latest
     #environment:
     #  name: "PowerShellGallery"
@@ -26,6 +26,7 @@ jobs:
           Version = '1.0.1'
           Author = 'arnab-roy-chowdhury'
           Description = "Update installed modules"
+          ProjectUri = "https://github.com/Arnab-Developer/UpdateInstalledModules"
         }
         Update-ScriptFileInfo @newScriptInfo -Force
         Test-ScriptFileInfo -Path Update-InstalledModules.ps1
