@@ -21,7 +21,7 @@ jobs:
       run: |             
         $newScriptInfo = @{
           Path = 'Update-InstalledModules.ps1'
-          Version = '1.0.1'
+          Version = '1.0.2'
           Author = 'arnab-roy-chowdhury'
           Description = "Update installed modules"
           ProjectUri = "https://github.com/Arnab-Developer/UpdateInstalledModules"
@@ -48,7 +48,7 @@ jobs:
       run: |             
         $newScriptInfo = @{
           Path = 'Update-InstalledModules.ps1'
-          Version = '1.0.1'
+          Version = '1.0.2'
           Author = 'arnab-roy-chowdhury'
           Description = "Update installed modules"
           ProjectUri = "https://github.com/Arnab-Developer/UpdateInstalledModules"
