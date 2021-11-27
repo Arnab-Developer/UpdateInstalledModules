@@ -57,9 +57,3 @@ jobs:
         }
         Update-ScriptFileInfo @newScriptInfo -Force
         Publish-Script -Path Update-InstalledModules.ps1 -NuGetApiKey ${{ secrets.POWERSHELL_GALLERY_API_KEY }}
-
-    - name: Check
-      shell: pwsh
-      run: |
-        Install-Script -Name Update-InstalledModules -Confirm
-        Get-InstalledModule
