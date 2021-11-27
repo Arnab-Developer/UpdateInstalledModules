@@ -9,14 +9,50 @@ on:
     types: [created]
 
 jobs:
-  build:
-    
-    runs-on: windows-latest
-    
+  build:    
+    name: Build
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Setup PowerShell
+    - name: Build and test      
       shell: pwsh
-      run: Get-InstalledModule
+      run: |             
+        $newScriptInfo = @{
+          Path = 'Update-InstalledModules.ps1'
+          Version = '1.0.0'
+          Author = 'arnab-roy-chowdhury'
+          Description = "Update installed modules"
+          ProjectUri = "https://github.com/Arnab-Developer/UpdateInstalledModules"
+          Tags = "modules, utility"
+          LicenseUri = "https://github.com/Arnab-Developer/UpdateInstalledModules/blob/main/LICENSE.txt"
+        }
+        Update-ScriptFileInfo @newScriptInfo -Force
+        Test-ScriptFileInfo -Path Update-InstalledModules.ps1 | Format-List
+
+  powershell-gallery-push:    
+    name: PowerShell gallery push
+    if: ${{ github.event_name == 'release' }}
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: "PowerShellGallery"
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Publish      
+      shell: pwsh
+      run: |             
+        $newScriptInfo = @{
+          Path = 'Update-InstalledModules.ps1'
+          Version = '1.0.0'
+          Author = 'arnab-roy-chowdhury'
+          Description = "Update installed modules"
+          ProjectUri = "https://github.com/Arnab-Developer/UpdateInstalledModules"
+          Tags = "modules, utility"
+          LicenseUri = "https://github.com/Arnab-Developer/UpdateInstalledModules/blob/main/LICENSE.txt"
+        }
+        Update-ScriptFileInfo @newScriptInfo -Force
+        Publish-Script -Path Update-InstalledModules.ps1
