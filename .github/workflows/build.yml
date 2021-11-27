@@ -20,18 +20,19 @@ jobs:
       
     - name: Build and publish      
       shell: pwsh
-      run: |
-        $newScriptInfo = @{
-          Path = 'Update-InstalledModules.ps1'
-          Version = '1.0.0'
-          Author = 'arnab-roy-chowdhury'
-          Description = "Update installed modules"
-        }
-        New-ScriptFileInfo @newScriptInfo        
-        Test-ScriptFileInfo -Path D:\ScriptSharingDemo\Demo-Script.ps1
+      run: |             
+        Test-ScriptFileInfo -Path Update-InstalledModules.ps1
         
 
 
+
+#$newScriptInfo = @{
+#          Path = 'Update-InstalledModules.ps1'
+#          Version = '1.0.0'
+#          Author = 'arnab-roy-chowdhury'
+#          Description = "Update installed modules"
+#        }
+#        New-ScriptFileInfo @newScriptInfo   
 
 # ./build.ps1 -Path /tmp/samplemodule
 # Publish-Module -Path /tmp/samplemodule -NuGetApiKey ${{ secrets.POWERSHELL_GALLERY_API_KEY }} -Verbose
