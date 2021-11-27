@@ -16,7 +16,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Publish      
+    - name: Build      
       shell: pwsh
       run: |             
         $newScriptInfo = @{
@@ -28,7 +28,7 @@ jobs:
           Tags = "modules, utility"
         }
         Update-ScriptFileInfo @newScriptInfo -Force
-        Test-ScriptFileInfo -Path Update-InstalledModules.ps1
+        Test-ScriptFileInfo -Path Update-InstalledModules.ps1 | Format-List
 
   powershell-gallery-push:    
     name: PowerShell gallery push
