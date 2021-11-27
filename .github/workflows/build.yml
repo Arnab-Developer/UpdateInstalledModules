@@ -12,8 +12,8 @@ jobs:
   publish-to-gallery:    
     name: "Publish to gallery"
     runs-on: ubuntu-latest
-    environment:
-      name: "PowerShellGallery"
+    #environment:
+    #  name: "PowerShellGallery"
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
