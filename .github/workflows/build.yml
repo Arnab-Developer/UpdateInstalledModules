@@ -27,7 +27,7 @@ jobs:
           Author = 'arnab-roy-chowdhury'
           Description = "Update installed modules"
         }
-        Update-ScriptFileInfo @newScriptInfo  
+        Update-ScriptFileInfo @newScriptInfo -Force
         Test-ScriptFileInfo -Path Update-InstalledModules.ps1
         
 
