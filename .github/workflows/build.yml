@@ -21,6 +21,13 @@ jobs:
     - name: Build and publish      
       shell: pwsh
       run: |             
+        $newScriptInfo = @{
+          Path = 'Update-InstalledModules.ps1'
+          Version = '1.0.0'
+          Author = 'arnab-roy-chowdhury'
+          Description = "Update installed modules"
+        }
+        Update-ScriptFileInfo @newScriptInfo  
         Test-ScriptFileInfo -Path Update-InstalledModules.ps1
         
 
