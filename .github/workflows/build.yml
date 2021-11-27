@@ -16,7 +16,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Build      
+    - name: Build and test      
       shell: pwsh
       run: |             
         $newScriptInfo = @{
@@ -26,6 +26,7 @@ jobs:
           Description = "Update installed modules"
           ProjectUri = "https://github.com/Arnab-Developer/UpdateInstalledModules"
           Tags = "modules, utility"
+          LicenseUri = "MIT"
         }
         Update-ScriptFileInfo @newScriptInfo -Force
         Test-ScriptFileInfo -Path Update-InstalledModules.ps1 | Format-List
