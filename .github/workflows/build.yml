@@ -38,6 +38,7 @@ jobs:
     needs: build
     environment:
       name: "PowerShellGallery"
+      url: "https://www.powershellgallery.com/packages/Update-InstalledModules"
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
