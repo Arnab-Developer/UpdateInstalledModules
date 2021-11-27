@@ -9,14 +9,32 @@ on:
     types: [created]
 
 jobs:
-  build:
-    
-    runs-on: windows-latest
-    
+  publish-to-gallery:    
+    name: "Publish to gallery"
+    runs-on: ubuntu-latest
+    environment:
+      name: "PowerShellGallery"
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Setup PowerShell
+    - name: Build and publish      
       shell: pwsh
-      run: Get-InstalledModule
+      run: |
+        $newScriptInfo = @{
+          Path = 'Update-InstalledModules.ps1'
+          Version = '1.0.0'
+          Author = 'arnab-roy-chowdhury'
+          Description = "Update installed modules"
+        }
+        New-ScriptFileInfo @newScriptInfo        
+        Test-ScriptFileInfo -Path D:\ScriptSharingDemo\Demo-Script.ps1
+        
+
+
+
+# ./build.ps1 -Path /tmp/samplemodule
+# Publish-Module -Path /tmp/samplemodule -NuGetApiKey ${{ secrets.POWERSHELL_GALLERY_API_KEY }} -Verbose
+
+#Publish-Script -Path D:\ScriptSharingDemo\Demo-Script.ps1 -Repository LocalRepo1
+#Find-Script -Repository LocalRepo1 -Name "Demo-Script"
