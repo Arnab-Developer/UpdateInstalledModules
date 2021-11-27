@@ -9,7 +9,7 @@ on:
     types: [created]
 
 jobs:
-  publish-to-gallery:    
+  build:    
     name: "Publish to gallery"
     runs-on: ubuntu-latest
     #environment:
@@ -18,12 +18,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Build and publish      
+    - name: Publish      
       shell: pwsh
       run: |             
         $newScriptInfo = @{
           Path = 'Update-InstalledModules.ps1'
-          Version = '1.0.0'
+          Version = '1.0.1'
           Author = 'arnab-roy-chowdhury'
           Description = "Update installed modules"
         }
