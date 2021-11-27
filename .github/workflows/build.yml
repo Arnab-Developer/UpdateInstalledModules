@@ -21,7 +21,7 @@ jobs:
       run: |             
         $newScriptInfo = @{
           Path = 'Update-InstalledModules.ps1'
-          Version = '1.0.0'
+          Version = '1.0.1'
           Author = 'arnab-roy-chowdhury'
           Description = "Update installed modules"
           ProjectUri = "https://github.com/Arnab-Developer/UpdateInstalledModules"
@@ -47,7 +47,7 @@ jobs:
       run: |             
         $newScriptInfo = @{
           Path = 'Update-InstalledModules.ps1'
-          Version = '1.0.0'
+          Version = '1.0.1'
           Author = 'arnab-roy-chowdhury'
           Description = "Update installed modules"
           ProjectUri = "https://github.com/Arnab-Developer/UpdateInstalledModules"
@@ -55,4 +55,10 @@ jobs:
           LicenseUri = "https://github.com/Arnab-Developer/UpdateInstalledModules/blob/main/LICENSE.txt"
         }
         Update-ScriptFileInfo @newScriptInfo -Force
-        Publish-Script -Path Update-InstalledModules.ps1
+        Publish-Script -Path Update-InstalledModules.ps1 -NuGetApiKey ${{ secrets.POWERSHELL_GALLERY_API_KEY }}
+
+    - name: Check
+      shell: pwsh
+      run: |
+        Install-Script -Name Update-InstalledModules -Confirm
+        Get-InstalledModule
